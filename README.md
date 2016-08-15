@@ -6,6 +6,8 @@ This is the core Kernel Fuzzer, with example library calls and Syscalls to start
 
 - Download and install Python 3.5
 
+- Compile binary for your system using the included .bat scripts for the correct architecture (Windows only!)
+
 - Run worker_setup/worker_setup.py
 
 The script should setup the VM as required, reboot and start the fuzzer. 
