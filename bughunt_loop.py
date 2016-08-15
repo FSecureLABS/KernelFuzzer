@@ -79,8 +79,7 @@ if crash_found:
 
         try:
                 # Invoke couchdb_submit.py with the correct arguments.
-                # C:\Users\user1\Documents\Fuzzing\EdgeFuzz> C:\Python27\python.exe .\couchdblib.py --server http://192.168.65.144:5984 --database edgefuzz --username admin --password <password> add-crash --crash-path <path to crash>
-                call(["C:\Python35\python.exe", "crash_processing\\couchdb_submit.py", "--server", "IPADDRESS", "--database", "bh200716", "--username", "USER", "--password", "PW", "add-crash", "--crash-path", "%s" % folder])
+                call(["C:\Python35\python.exe", "crash_processing\\couchdb_submit.py", "--server", "IPADDRESS", "--database", "DBNAME", "--username", "USER", "--password", "PW", "add-crash", "--crash-path", "%s" % folder])
         except:
                 print("Error, cannot submit crash information to database.")
                 raise
