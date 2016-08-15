@@ -1,2 +1,20 @@
 # KernelFuzzer
-Cross Platform Kernel Fuzzer Framework
+
+This is the core Kernel Fuzzer, with example library calls and Syscalls to start fuzzing Windows. The fuzzer has been tested on Windows 7 / 10, OS X and QNX. 
+
+#Getting started
+
+Download and install Python 3.5
+Run worker_setup/worker_setup.py
+
+The script should setup the VM as required, reboot and start the fuzzer. 
+
+#Writing modules / syscalls
+
+See our Def Con 24 slides over at https://labs.mwrinfosecurity.com which give an explanation of the fuzzer and examples of writing library calls and syscalls for the fuzzer. One of each is provided as an example and more examples are provided in the slides. 
+
+#Database
+If you wish to send your crashes to a CouchDB instance, this needs to be setup seperately, then edit the crash_processing/couchdb_submit.py scipt with the required information. 
+
+#Contact
+Feel free to submit issues or ping us on Twitter - @NerdKernel / @munmap. 
