@@ -1,0 +1,2 @@
+call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" amd64
+cl.exe /w /Zi /Tc template.c gdi32.lib kernel32.lib User32.lib Advapi32.lib Shell32.lib Msimg32.lib Dxva2.lib Mscms.lib ..\bughunt_syscall_x64.obj
