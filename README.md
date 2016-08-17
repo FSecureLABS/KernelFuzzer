@@ -6,7 +6,7 @@ This is the core Kernel Fuzzer, with example library calls and Syscalls to start
 
 - Download and install Python 3.5
 
-- Compile binary for your system using the included .bat scripts for the correct architecture (Windows only!)
+- Compile binary for your system using the included .bat scripts for the correct architecture (Windows only!). Tested using Visual Studio 2013 - if you use a different version of VS, edit the script to point at your copy of 'vcvarsall.bat'. 
 
 - Run worker_setup/worker_setup.py
 

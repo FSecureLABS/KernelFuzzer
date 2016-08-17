@@ -300,7 +300,7 @@ HWND OpenNotepad(void) {
     	return 0;
     }
 
-    sprintf_s(buf, 1024, "f%d - Notepad", tempINT);
+    sprintf_s(buf, 1024, "f%d.txt - Notepad", tempINT); 
 
 
     //Dirty++

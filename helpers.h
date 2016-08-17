@@ -40,4 +40,13 @@ POINT get_POINT(char *vid) {
     return p;
 }
 
+WORD get_time_in_ms(void) {
+	SYSTEMTIME time;
+	WORD millis;
+	GetSystemTime(&time);
+
+	millis = (time.wSecond * 1000) + time.wMilliseconds;
+	return millis;
+}
+
 #endif /* HELPERS_H */
