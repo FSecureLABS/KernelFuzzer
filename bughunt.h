@@ -414,7 +414,7 @@ real32_t get_fuzzed_real32 (void)
 
     real32_t n = random_double_0_to_1();
     logger("//[Get Fuzzed Value] get_fuzzed_real32 : n = %lf", n);
-    return;
+    return n;
 }
 
 real64_t get_fuzzed_real64 (void)
