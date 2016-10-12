@@ -14,7 +14,7 @@
 
 #ifdef _M_IX86
 
-__declspec(noinline) DWORD __stdcall bughunt_syscall (
+__declspec(naked) DWORD __stdcall bughunt_syscall (
     
     DWORD _syscall_uid,
 
@@ -52,48 +52,14 @@ __declspec(noinline) DWORD __stdcall bughunt_syscall (
     DWORD _dw0x20
 )
 {
-    __asm
-    {
-        push _dw0x20
-        push _dw0x1F
-        push _dw0x1E
-        push _dw0x1D
-        push _dw0x1C
-        push _dw0x1B
-        push _dw0x1A
-        push _dw0x19
-        push _dw0x18
-        push _dw0x17
-        push _dw0x16
-        push _dw0x15
-        push _dw0x14
-        push _dw0x13
-        push _dw0x12
-        push _dw0x11
-        push _dw0x10
-        push _dw0x0F
-        push _dw0x0E
-        push _dw0x0D
-        push _dw0x0C
-        push _dw0x0B
-        push _dw0x0A
-        push _dw0x09
-        push _dw0x08
-        push _dw0x07
-        push _dw0x06
-        push _dw0x05
-        push _dw0x04
-        push _dw0x03
-        push _dw0x02
-        push _dw0x01
-
-        mov eax, _syscall_uid
-
-        mov edx, 7FFE0300h
-        call dword ptr [edx]
-
-        add esp, 0x80
-    }
+	__asm{
+		pop edx;
+		pop eax;	//_syscall_uid
+		push edx;	//return
+		mov edx, 0x7FFE0300;
+		call dword ptr [edx];
+		retn 0x80;	
+	}
 }
 
 #elif _M_IX64
