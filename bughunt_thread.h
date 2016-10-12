@@ -1,6 +1,12 @@
 #ifndef BUGHUNT_THREAD_H
 #define BUGHUNT_THREAD_H
 
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+
 #include "bughunt.h"
 #include "handles_database.h"
 #include "library_calls.h"
@@ -8,42 +14,43 @@
 
 #ifdef _M_IX86
 
-_declspec(naked) PVOID NTAPI bughunt_syscall (
-	DWORD _syscall_uid,
+__declspec(noinline) DWORD __stdcall bughunt_syscall (
+    
+    DWORD _syscall_uid,
 
-	PVOID _dw0x01,
-	PVOID _dw0x02,
-	PVOID _dw0x03,
-	PVOID _dw0x04,
-	PVOID _dw0x05,
-	PVOID _dw0x06,
-	PVOID _dw0x07,
-	PVOID _dw0x08,
-	PVOID _dw0x09,
-	PVOID _dw0x0A,
-	PVOID _dw0x0B,
-	PVOID _dw0x0C,
-	PVOID _dw0x0D,
-	PVOID _dw0x0E,
-	PVOID _dw0x0F,
-	PVOID _dw0x10,
-	PVOID _dw0x11,
-	PVOID _dw0x12,
-	PVOID _dw0x13,
-	PVOID _dw0x14,
-	PVOID _dw0x15,
-	PVOID _dw0x16,
-	PVOID _dw0x17,
-	PVOID _dw0x18,
-	PVOID _dw0x19,
-	PVOID _dw0x1A,
-	PVOID _dw0x1B,
-	PVOID _dw0x1C,
-	PVOID _dw0x1D,
-	PVOID _dw0x1E,
-	PVOID _dw0x1F,
-	PVOID _dw0x20
-	)
+    DWORD _dw0x01,
+    DWORD _dw0x02,
+    DWORD _dw0x03,
+    DWORD _dw0x04,
+    DWORD _dw0x05,
+    DWORD _dw0x06,
+    DWORD _dw0x07,
+    DWORD _dw0x08,
+    DWORD _dw0x09,
+    DWORD _dw0x0A,
+    DWORD _dw0x0B,
+    DWORD _dw0x0C,
+    DWORD _dw0x0D,
+    DWORD _dw0x0E,
+    DWORD _dw0x0F,
+    DWORD _dw0x10,
+    DWORD _dw0x11,
+    DWORD _dw0x12,
+    DWORD _dw0x13,
+    DWORD _dw0x14,
+    DWORD _dw0x15,
+    DWORD _dw0x16,
+    DWORD _dw0x17,
+    DWORD _dw0x18,
+    DWORD _dw0x19,
+    DWORD _dw0x1A,
+    DWORD _dw0x1B,
+    DWORD _dw0x1C,
+    DWORD _dw0x1D,
+    DWORD _dw0x1E,
+    DWORD _dw0x1F,
+    DWORD _dw0x20
+)
 {
 	__asm{
 		pop edx;
@@ -112,7 +119,7 @@ DWORD bughunt_thread(unsigned int seed)
     char syscall_log_string[512];
     memset(syscall_log_string, '\0', 512);
 
-    // It turns out my_rand() is thread-safe after all as its state is kept in a thread-local storage (TLS). This means we have to seed every single state on its own. In this case we choose to use a comination of time(NULL), current process ID, and current thread ID.
+    // It turns out rand() is thread-safe after all as its state is kept in a thread-local storage (TLS). This means we have to seed every single state on its own. In this case we choose to use a comination of time(NULL), current process ID, and current thread ID.
 	if (seed == 1)
 	{
 		seed = time(NULL) + GetCurrentProcessId() + GetCurrentThreadId();
@@ -133,7 +140,7 @@ DWORD bughunt_thread(unsigned int seed)
             //fflush(NULL);
 
             // To hook or not to hook? Hook functions at random.
-            if (my_rand() % 5 == 1) {
+            if (rand() % 5 == 1) {
                 // Uncomment below for hooking.
                 // 1. Okay, we'll hook. Proceed with installing hook.
                 //BH_SetWindowsHookEx();
@@ -145,7 +152,7 @@ DWORD bughunt_thread(unsigned int seed)
             else {
                 (*random_LIBRARY_CALL())();
             }
-            if (my_rand() % 2) {
+            if (rand() % 2) {
                 break;
 		   }
 	   }
