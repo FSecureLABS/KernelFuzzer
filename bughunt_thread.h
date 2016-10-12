@@ -14,7 +14,7 @@
 
 #ifdef _M_IX86
 
-__declspec(noinline) DWORD __stdcall bughunt_syscall (
+__declspec(naked) DWORD __stdcall bughunt_syscall (
     
     DWORD _syscall_uid,
 
